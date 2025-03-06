@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Start app.js in the background using start /B
-                bat 'start /B node app.js'
+                bat 'start /B node app.js > output.log 2>&1'
             }
         }
     }
