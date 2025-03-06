@@ -27,8 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'forever stop app.js || echo "No running instance"' // Stop previous instance if any
-                bat 'forever start app.js' // Start the app and keep it running
+                bat 'npx forever stop app.js || echo "No running instance"'
+                bat 'npx forever start app.js'
             }
         }
     }
