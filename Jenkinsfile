@@ -27,7 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'start /B node app.js'
+                bat 'forever stop app.js || echo "No running instance"' // Stop previous instance if any
+                bat 'forever start app.js' // Start the app and keep it running
             }
         }
     }
