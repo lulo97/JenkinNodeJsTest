@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/lulo97/JenkinNodeJsTest'
+                git branch: 'main', url: 'https://github.com/lulo97/JenkinNodeJsTest'
             }
         }
         stage('Install Dependencies') {
