@@ -12,22 +12,22 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                bash 'npm install'
+                bat 'npm install'
             }
         }
         // stage('Run Tests') {
         //     steps {
-        //         bash 'npm test || true' // Use actual test script
+        //         bat 'npm test || true' // Use actual test script
         //     }
         // }
         stage('Build') {
             steps {
-                bash 'echo "Build completed"'
+                bat 'echo "Build completed"'
             }
         }
         stage('Deploy') {
             steps {
-                bash 'nohup node app.js &'
+                bat 'nohup node app.js &'
             }
         }
     }
