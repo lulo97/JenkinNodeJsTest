@@ -15,20 +15,23 @@ pipeline {
                 bat 'npm install'
             }
         }
-        // stage('Run Tests') {
-        //     steps {
-        //         bat 'npm test || true' // Use actual test script
-        //     }
-        // }
         stage('Build') {
             steps {
                 bat 'echo "Build completed"'
             }
         }
+        stage('Stop Existing Process') {
+            steps {
+                // Find and stop any existing node process running app.js
+                script {
+                    bat 'for /f "tokens=5" %a in (\'netstat -ano ^| findstr :3000\') do taskkill /F /PID %a'
+                }
+            }
+        }
         stage('Deploy') {
             steps {
-                bat 'npx forever stop app.js || echo "No running instance"'
-                bat 'npx forever start app.js'
+                // Start app.js in the background using start /B
+                bat 'start /B node app.js'
             }
         }
     }
