@@ -20,14 +20,6 @@ pipeline {
                 bat 'echo "Build completed"'
             }
         }
-        stage('Stop Existing Process') {
-            steps {
-                // Find and stop any existing node process running app.js
-                script {
-                    bat 'for /f "tokens=5" %a in (\'netstat -ano ^| findstr :3000\') do taskkill /F /PID %a'
-                }
-            }
-        }
         stage('Deploy') {
             steps {
                 // Start app.js in the background using start /B
